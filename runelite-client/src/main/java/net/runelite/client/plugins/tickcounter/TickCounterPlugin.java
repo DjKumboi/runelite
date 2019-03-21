@@ -22,8 +22,8 @@ import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 @PluginDescriptor(name = "Tick Counter",
-		description = "Counts combat activity for nearby players",
-		enabledByDefault = false
+	description = "Counts combat activity for nearby players",
+	enabledByDefault = false
 )
 public class TickCounterPlugin extends Plugin {
 
@@ -156,9 +156,9 @@ public class TickCounterPlugin extends Plugin {
 			case 1203: // chally spec
 				delta = 7;
 				break;
-		case -1:
-			blowpiping.remove(p);
-			break;
+			case -1:
+				blowpiping.remove(p);
+				break;
 		}
 		if (delta > 0) {
 			String name = p.getName();
