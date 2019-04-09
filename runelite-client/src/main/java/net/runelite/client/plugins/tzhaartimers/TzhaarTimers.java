@@ -25,7 +25,6 @@
 package net.runelite.client.plugins.tzhaartimers;
 
 import net.runelite.client.ui.overlay.infobox.InfoBox;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.time.Duration;
