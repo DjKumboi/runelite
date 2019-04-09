@@ -38,19 +38,17 @@ import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.infobox.InfoBoxManager;
 import net.runelite.client.util.Text;
-
 import javax.inject.Inject;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Arrays;
-
 import static net.runelite.api.ItemID.FIRE_CAPE;
 import static net.runelite.api.ItemID.INFERNAL_CAPE;
 
 @PluginDescriptor(
 	name = "Tzhaar Timers",
 	description = "Display elapsed time in the Fight Caves and Inferno",
-	tags = {"inferno", "fight", "caves", "cape", "timer"}
+	tags = {"inferno", "fight", "caves", "cape", "timer", "tzhaar"}
 )
 @Slf4j
 public class TzhaarTimersPlugin extends Plugin
@@ -145,9 +143,6 @@ public class TzhaarTimersPlugin extends Plugin
 				break;
 			case HOPPING:
 				loggingIn = true;
-				removeTimer();
-				saveConfig();
-				break;
 			case LOGIN_SCREEN:
 				removeTimer();
 				saveConfig();
@@ -166,7 +161,6 @@ public class TzhaarTimersPlugin extends Plugin
 			Instant now = Instant.now();
 			if (!started && message.contains(START_MESSAGE))
 			{
-				log.info("first time starting timer");
 				started = true;
 				if (checkInFightCaves())
 				{
@@ -183,27 +177,24 @@ public class TzhaarTimersPlugin extends Plugin
 			{
 				if (message.contains(WAVE_MESSAGE))
 				{
-					log.info("resuming");
 					if (lastTime != null)
 					{
-						log.info("updating start time");
-						Instant newStartTime = startTime.plus(Duration.between(startTime, now)).minus(Duration.between(startTime, lastTime));
-						startTime = newStartTime;
+						startTime = startTime.plus(Duration.between(startTime, now)).minus(Duration.between(startTime, lastTime));
 						lastTime = null;
 					}
-					if (checkInFightCaves()) {
+					if (checkInFightCaves())
+					{
 						infoBoxManager.removeInfoBox(timer);
 						createTimer(FIRE_CAPE, startTime, lastTime);
 					}
-					if (checkInInferno()) {
+					if (checkInInferno())
+					{
 						infoBoxManager.removeInfoBox(timer);
 						createTimer(INFERNAL_CAPE, startTime, lastTime);
 					}
 				}
 				if (message.contains(FIGHT_CAVE_PAUSED_MESSAGE) || message.contains(INFERNO_PAUSED_MESSAGE))
 				{
-					log.info("paused");
-
 					if (checkInFightCaves())
 					{
 						infoBoxManager.removeInfoBox(timer);
@@ -218,8 +209,6 @@ public class TzhaarTimersPlugin extends Plugin
 				}
 				if (message.contains(DEFEATED_MESSAGE) || message.contains(INFERNO_COMPLETE_MESSAGE) || message.contains(FIGHT_CAVES_COMPLETE_MESSAGE))
 				{
-					log.info("quit");
-					log.info("elapsed time: " + Duration.between(startTime, now).toString());
 					removeTimer();
 					resetConfig();
 					startTime = null;
