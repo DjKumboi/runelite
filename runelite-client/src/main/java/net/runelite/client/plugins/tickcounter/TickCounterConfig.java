@@ -8,7 +8,8 @@ import net.runelite.client.config.ConfigItem;
 import java.awt.*;
 
 @ConfigGroup("tickcounter")
-public interface TickCounterConfig extends Config {
+public interface TickCounterConfig extends Config
+{
 	@ConfigItem(
 		keyName = "resetInstance",
 		name = "Reset on new instances",
@@ -19,6 +20,7 @@ public interface TickCounterConfig extends Config {
 	{
 		return true;
 	}
+
 	@Alpha
 	@ConfigItem(
 		keyName = "selfColor",
@@ -30,6 +32,7 @@ public interface TickCounterConfig extends Config {
 	{
 		return Color.green;
 	}
+
 	@Alpha
 	@ConfigItem(
 		keyName = "totalColor",
@@ -41,6 +44,7 @@ public interface TickCounterConfig extends Config {
 	{
 		return Color.RED;
 	}
+
 	@Alpha
 	@ConfigItem(
 		keyName = "otherColor",
@@ -52,6 +56,7 @@ public interface TickCounterConfig extends Config {
 	{
 		return Color.white;
 	}
+
 	@Alpha
 	@ConfigItem(
 		keyName = "bgColor",
@@ -63,6 +68,7 @@ public interface TickCounterConfig extends Config {
 	{
 		return new Color(70, 61, 50, 156);
 	}
+
 	@Alpha
 	@ConfigItem(
 		keyName = "titleColor",

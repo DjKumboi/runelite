@@ -65,5 +65,4 @@ public class TickCounterOverlay extends Overlay {
 		elems.add(LineComponent.builder().left("Total").leftColor(config.totalColor()).rightColor(config.totalColor()).right(String.valueOf(total)).build());
 		return this.panelComponent.render(g);
 	}
-
 }
