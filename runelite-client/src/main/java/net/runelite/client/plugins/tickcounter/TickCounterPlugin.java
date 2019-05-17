@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import com.google.inject.Provides;
+import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Actor;
 import net.runelite.api.Client;
 import net.runelite.api.Player;
@@ -25,6 +26,7 @@ import net.runelite.client.ui.overlay.OverlayManager;
 	description = "Counts combat activity for nearby players",
 	enabledByDefault = false
 )
+@Slf4j
 public class TickCounterPlugin extends Plugin {
 
 	@Inject
@@ -134,6 +136,8 @@ public class TickCounterPlugin extends Plugin {
 			case 401:
 				if (weapon == 13576) // dwh bop
 					delta = 6;
+				else if (weapon == 23360) // ham joint
+					delta = 3;
 				else // used by pickaxe and axe
 					delta = 5;
 				break;
